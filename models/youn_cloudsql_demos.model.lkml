@@ -1,7 +1,7 @@
 connection: "youn_cloudsql_demos"
 
 # include all the views
-include: "/views/**/*.view"
+include: "/views/cloudsql/**/*.view"
 
 datagroup: youn_demos_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
