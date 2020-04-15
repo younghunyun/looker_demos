@@ -46,8 +46,8 @@ view: weather_info {
     drill_fields: []
   }
 
-  measure: avg_rainfall {
-    type: average
+  measure: sum_rainfall {
+    type: sum
     sql: ${rainfall} ;;
   }
 
