@@ -91,7 +91,7 @@ view: delivery_calls {
     sql:  ${calls_cnt_porks} ;;
   }
 
-  measure: total_calls_ckicken {
+  measure: total_calls_chicken {
     type: sum
     sql:  ${calls_cnt_chicken} ;;
   }
