@@ -1,19 +1,19 @@
 view: delivery_calls {
   sql_table_name: demos.looker_demo_delivery_calls ;;
 
-  dimension: addr_gungu {
-    type: string
-    sql: ${TABLE}.addr_gungu ;;
-  }
-
   dimension: addr_sido {
     type: string
     sql: ${TABLE}.addr_sido ;;
   }
 
-  dimension: call_cnt {
-    type: number
-    sql: ${TABLE}.call_cnt ;;
+  dimension: addr_gungu {
+    type: string
+    sql: ${TABLE}.addr_gungu ;;
+  }
+
+  dimension: addr_dong {
+    type: string
+    sql: ${TABLE}.addr_dong;;
   }
 
   dimension_group: call_dt {
@@ -46,22 +46,27 @@ view: delivery_calls {
     sql: ${TABLE}.delivery_item ;;
   }
 
-  dimension: calls_ch {
+  dimension: call_cnt {
+    type: number
+    sql: ${TABLE}.call_cnt ;;
+  }
+
+  dimension: calls_cnt_chinese {
     type: number
     sql: CASE WHEN ${delivery_item} = '중국음식' THEN ${call_cnt} ELSE 0 END ;;
   }
 
-  dimension: calls_jb {
+  dimension: calls_cnt_porks {
     type: number
     sql: CASE WHEN ${delivery_item} = '족발/보쌈' THEN ${call_cnt} ELSE 0 END ;;
   }
 
-  dimension: calls_ck {
+  dimension: calls_cnt_chicken {
     type: number
     sql: CASE WHEN ${delivery_item} = '치킨' THEN ${call_cnt} ELSE 0 END ;;
   }
 
-  dimension: calls_pz {
+  dimension: calls_cnt_pizza {
     type: number
     sql: CASE WHEN ${delivery_item} = '피자' THEN ${call_cnt} ELSE 0 END ;;
   }
@@ -76,23 +81,23 @@ view: delivery_calls {
     sql: ${call_cnt} ;;
   }
 
-  measure: total_calls_ch {
+  measure: total_calls_chinese {
     type: sum
-    sql:  ${calls_ch} ;;
+    sql:  ${calls_cnt_chinese} ;;
   }
 
-  measure: total_calls_jb {
+  measure: total_calls_porks {
     type: sum
-    sql:  ${calls_jb} ;;
+    sql:  ${calls_cnt_porks} ;;
   }
 
-  measure: total_calls_ck {
+  measure: total_calls_ckicken {
     type: sum
-    sql:  ${calls_ck} ;;
+    sql:  ${calls_cnt_chicken} ;;
   }
 
-  measure: total_calls_pz {
+  measure: total_calls_pizza {
     type: sum
-    sql:  ${calls_pz} ;;
+    sql:  ${calls_cnt_pizza} ;;
   }
 }

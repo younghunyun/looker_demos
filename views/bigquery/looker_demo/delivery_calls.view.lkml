@@ -1,4 +1,4 @@
-view: call_delivery {
+view: delivery_calls {
   sql_table_name: `looker_demo.call_delivery`
     ;;
 

@@ -3,12 +3,12 @@ connection: "youn_cloudsql_demos"
 # include all the views
 include: "/views/cloudsql/**/*.view"
 
-datagroup: youn_demos_default_datagroup {
+datagroup: youn_cloudsql_model_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
 
-persist_with: youn_demos_default_datagroup
+persist_with: youn_cloudsql_model_default_datagroup
 
 explore: delivery_calls {
   join: weather_info {
@@ -19,17 +19,3 @@ explore: delivery_calls {
 }
 
 explore: calls_with_weather {}
-
-# explore: ga_sessions_flatten {}
-#
-# explore: seoul_households {}
-#
-# explore: seoul_population {}
-#
-# explore: seoul_weather {}
-#
-# explore: skdata_delivery_calls {}
-#
-# explore: test_table {}
-#
-# explore: weather_info {}
