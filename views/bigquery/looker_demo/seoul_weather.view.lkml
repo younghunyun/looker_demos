@@ -1,5 +1,5 @@
 view: seoul_weather {
-  sql_table_name: demos.seoul_weather ;;
+  sql_table_name: `stf-development.looker_demo.seoul_weather_2018` ;;
 
   dimension: sido {
     type: string
@@ -16,22 +16,12 @@ view: seoul_weather {
     sql: ${TABLE}.dong ;;
   }
 
-  dimension_group: dt {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
+  dimension: date {
+    type: string
     sql: ${TABLE}.date ;;
   }
 
-  dimension: hr {
+  dimension: hour {
     type: string
     sql: ${TABLE}.hour ;;
   }
@@ -41,57 +31,58 @@ view: seoul_weather {
     sql: ${TABLE}.rainfall ;;
   }
 
+  dimension: temperature {
+    type: number
+    sql: ${TABLE}.temperature ;;
+  }
+
   dimension: rainfall_range {
     case: {
       when: {
         sql: ${TABLE}.rainfall <= 0.0 ;;
-        label: "0"
+        label: "UNDER 0 mm"
       }
       when: {
         sql: ${TABLE}.rainfall < 1.0 ;;
-        label: "UNDER_1mm"
+        label: "UNDER 1 mm"
       }
       when: {
         sql: ${TABLE}.rainfall >= 1.0 AND ${TABLE}.rainfall < 2.0 ;;
-        label: "UNDER_2mm"
+        label: "UNDER 2 mm"
       }
       when: {
         sql: ${TABLE}.rainfall >= 2.0 AND ${TABLE}.rainfall < 3.0 ;;
-        label: "UNDER_3mm"
+        label: "UNDER 3 mm"
       }
       when: {
         sql: ${TABLE}.rainfall >= 3.0 AND ${TABLE}.rainfall < 4.0 ;;
-        label: "UNDER_4mm"
+        label: "UNDER 4 mm"
       }
       when: {
         sql: ${TABLE}.rainfall >= 4.0 AND ${TABLE}.rainfall < 5.0 ;;
-        label: "UNDER_5mm"
+        label: "UNDER 5 mm"
       }
       when: {
-        sql: ${TABLE}.rainfall >= 5.0 ;;
-        label: "5mm_OR_OVER"
+        sql: ${TABLE}.rainfall >= 5.0 AND ${TABLE}.rainfall < 10.0 ;;
+        label: "UNDER 10 mm"
+      }
+      when: {
+        sql: ${TABLE}.rainfall >= 10.0 ;;
+        label: "10 mm OR OVER"
       }
       else: "N/A"
     }
   }
 
-  dimension: temperature {
-    type: number
+  dimension: temperature_tier {
+    type: tier
+    tiers: [-20, -10, 0, 10, 20, 30, 40]
+    style:  integer
     sql: ${TABLE}.temperature ;;
   }
 
   measure: row_count {
     type: count
     drill_fields: []
-  }
-
-  measure: sum_rainfall {
-    type: sum
-    sql: ${rainfall} ;;
-  }
-
-  measure: avg_temperature {
-    type: average
-    sql: ${temperature} ;;
   }
 }

@@ -1,9 +1,9 @@
 view: delivery_calls {
-  sql_table_name: demos.looker_demo_delivery_calls ;;
+  sql_table_name: demos.delivery_calls ;;
 
   dimension: addr_sido {
     type: string
-    sql: ${TABLE}.addr_sido ;;
+    sql: SUBSTR(${TABLE}.addr_sido, 1, 2) ;;
   }
 
   dimension: addr_gungu {
@@ -13,7 +13,7 @@ view: delivery_calls {
 
   dimension: addr_dong {
     type: string
-    sql: ${TABLE}.addr_dong;;
+    sql: ${TABLE}.addr_dong ;;
   }
 
   dimension_group: call_dt {

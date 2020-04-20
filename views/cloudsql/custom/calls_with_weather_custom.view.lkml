@@ -1,9 +1,9 @@
-view: calls_with_weather {
+view: calls_with_weather_custom {
   derived_table: {
     sql:  SELECT
             c.dt
-            , c.calls_china
-            , c.calls_pork
+            , c.calls_chinese
+            , c.calls_porks
             , c.calls_chicken
             , c.calls_pizza
             , w.rainfall
@@ -11,8 +11,8 @@ view: calls_with_weather {
           FROM(
             SELECT
               dt
-              , SUM(calls_china) calls_china
-              , SUM(calls_pork) calls_pork
+              , SUM(calls_chinese) calls_chinese
+              , SUM(calls_porks) calls_porks
               , SUM(calls_chicken) calls_chicken
               , SUM(calls_pizza) calls_pizza
             FROM (
@@ -20,10 +20,10 @@ view: calls_with_weather {
                 call_date dt
                 , CASE WHEN delivery_item = '중국음식' THEN call_cnt
                     ELSE 0
-                    END AS calls_china
+                    END AS calls_chinese
                 , CASE WHEN delivery_item = '족발/보쌈' THEN call_cnt
                     ELSE 0
-                    END AS calls_pork
+                    END AS calls_porks
                 , CASE WHEN delivery_item = '치킨' THEN call_cnt
                     ELSE 0
                     END AS calls_chicken
@@ -76,14 +76,14 @@ view: calls_with_weather {
 #     sql: WEEK(${TABLE}.dt) ;;
 #   }
 
-  dimension: calls_china {
+  dimension: calls_chinese {
     type: number
-    sql: ${TABLE}.calls_china ;;
+    sql: ${TABLE}.calls_chinese ;;
   }
 
-  dimension: calls_pork {
+  dimension: calls_porks {
     type: number
-    sql: ${TABLE}.calls_pork ;;
+    sql: ${TABLE}.calls_porks ;;
   }
 
   dimension: calls_chicken {
@@ -113,17 +113,17 @@ view: calls_with_weather {
 
   measure: total_calls {
     type: sum
-    sql: ${calls_china} + ${calls_pork} + ${calls_chicken} + ${calls_pizza};;
+    sql: ${calls_chinese} + ${calls_porks} + ${calls_chicken} + ${calls_pizza};;
   }
 
-  measure: total_calls_china {
+  measure: total_calls_chinese {
     type: sum
-    sql: ${calls_china} ;;
+    sql: ${calls_chinese} ;;
   }
 
-  measure: total_calls_pork {
+  measure: total_calls_porks {
     type: sum
-    sql: ${calls_pork} ;;
+    sql: ${calls_porks} ;;
   }
 
   measure: total_calls_chicken {
