@@ -13,7 +13,12 @@ persist_with: youn_cloudsql_model_default_datagroup
 explore: delivery_calls {
   join: weather_info {
     type: inner
-    sql_on: ${weather_info.dt_date} = ${delivery_calls.call_dt_date} AND ${weather_info.hr} = ${delivery_calls.call_hr} AND ${weather_info.gungu} = ${delivery_calls.addr_gungu} ;;
+    sql_on: SUBSTR(${delivery_calls.addr_sido}, 1, 2) = ${weather_info.sido}
+      AND ${delivery_calls.addr_gungu} = ${weather_info.gungu}
+      AND SUBSTR(${delivery_calls.addr_dong}, 1, 2) = ${weather_info.dong}
+      AND ${delivery_calls.call_dt_date} = ${weather_info.dt_date}
+      AND ${delivery_calls.call_hr} = ${weather_info.hr}
+      ;;
     relationship: one_to_one
   }
 }

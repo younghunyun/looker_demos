@@ -1,6 +1,21 @@
 view: weather_info {
   sql_table_name: demos.looker_demo_weather_info ;;
 
+  dimension: sido {
+    type: string
+    sql: ${TABLE}.sido ;;
+  }
+
+  dimension: gungu {
+    type: string
+    sql: ${TABLE}.gungu ;;
+  }
+
+  dimension: dong {
+    type: string
+    sql: ${TABLE}.dong ;;
+  }
+
   dimension_group: dt {
     type: time
     timeframes: [
@@ -16,11 +31,6 @@ view: weather_info {
     sql: ${TABLE}.date ;;
   }
 
-  dimension: gungu {
-    type: string
-    sql: ${TABLE}.gungu ;;
-  }
-
   dimension: hr {
     type: string
     sql: ${TABLE}.hour ;;
@@ -29,11 +39,6 @@ view: weather_info {
   dimension: rainfall {
     type: number
     sql: ${TABLE}.rainfall ;;
-  }
-
-  dimension: sido {
-    type: string
-    sql: ${TABLE}.sido ;;
   }
 
   dimension: temperature {
