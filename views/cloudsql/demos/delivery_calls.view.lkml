@@ -21,6 +21,7 @@ view: delivery_calls {
     timeframes: [
       raw,
       date,
+      day_of_week,
       week,
       month,
       quarter,
