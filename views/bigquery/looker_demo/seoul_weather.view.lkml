@@ -39,32 +39,28 @@ view: seoul_weather {
   dimension: rainfall_range {
     case: {
       when: {
-        sql: ${TABLE}.rainfall <= 0.0 ;;
-        label: "UNDER 0 mm"
-      }
-      when: {
         sql: ${TABLE}.rainfall < 1.0 ;;
-        label: "UNDER 1 mm"
+        label: "LESS THAN 1 mm"
       }
       when: {
         sql: ${TABLE}.rainfall >= 1.0 AND ${TABLE}.rainfall < 2.0 ;;
-        label: "UNDER 2 mm"
+        label: "LESS THAN 2 mm"
       }
       when: {
         sql: ${TABLE}.rainfall >= 2.0 AND ${TABLE}.rainfall < 3.0 ;;
-        label: "UNDER 3 mm"
+        label: "LESS THAN 3 mm"
       }
       when: {
         sql: ${TABLE}.rainfall >= 3.0 AND ${TABLE}.rainfall < 4.0 ;;
-        label: "UNDER 4 mm"
+        label: "LESS THAN 4 mm"
       }
       when: {
         sql: ${TABLE}.rainfall >= 4.0 AND ${TABLE}.rainfall < 5.0 ;;
-        label: "UNDER 5 mm"
+        label: "LESS THAN 5 mm"
       }
       when: {
         sql: ${TABLE}.rainfall >= 5.0 AND ${TABLE}.rainfall < 10.0 ;;
-        label: "UNDER 10 mm"
+        label: "LESS THAN 10 mm"
       }
       when: {
         sql: ${TABLE}.rainfall >= 10.0 ;;
