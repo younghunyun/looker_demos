@@ -17,7 +17,7 @@ view: seoul_weather {
   }
 
   dimension: date {
-    type: string
+    type: date
     sql: ${TABLE}.date ;;
   }
 
