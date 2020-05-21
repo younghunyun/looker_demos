@@ -1,5 +1,5 @@
 view: seoul_weather {
-  sql_table_name: `stf-development.looker_demo.seoul_weather_2018` ;;
+  sql_table_name: `stf-development.looker_demo.seoul_weather` ;;
 
   dimension: sido {
     type: string
